@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { Routes,Route } from 'react-router-dom';
 import Home from './Components/Home';
@@ -13,7 +13,9 @@ import Users from './Components/Users';
 import UserDetails from './Components/UserDetails';
 import Admin from './Components/Admin';
 import React from 'react';
-const lazyAbout=React.lazy(()=>import('./Components/About'))
+import { lazy } from 'react';
+import { Suspense } from 'react';
+const LazyAbout=lazy(()=>import('./Components/About'))
 
 function App() {
   return (
@@ -21,7 +23,9 @@ function App() {
       <Navbar/>
       <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/about" element={<lazyAbout/>}/>
+          <Route path="/about" element={<Suspense fallback='Loading.....'>
+            <LazyAbout/>
+          </Suspense>}/>
           <Route path='/OrderSummary' element={<OrderSummary/>}/>
           <Route path='/product' element={<Product/>}>
             <Route path="featured" element={<Featured/>}/>
@@ -30,7 +34,7 @@ function App() {
           <Route path="users" element={<Users/>}>
             <Route path=":userId" element={<UserDetails/>}/>
             <Route path="admin" element={<Admin/>}/>
-          
+
           </Route>
            
           <Route path='*' element={<NoMathch/>}/>
