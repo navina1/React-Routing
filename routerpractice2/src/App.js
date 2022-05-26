@@ -31,9 +31,13 @@ function App() {
             <Route path="featured" element={<Featured/>}/>
             <Route path="new" element={<New/>}/>
           </Route>
-          <Route path="users" element={<Users/>}>
+          <Route path="users" element={<Users state=
+          
+            {"hhhh"}
+          />}>
             <Route path=":userId" element={<UserDetails/>}/>
             <Route path="admin" element={<Admin/>}/>
+            
 
           </Route>
            
